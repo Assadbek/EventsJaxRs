@@ -1,8 +1,6 @@
 package com.example.eventsjaxrs.config;
 
-import com.example.eventsjaxrs.controller.AttendeeController;
-import com.example.eventsjaxrs.controller.EventController;
-import com.example.eventsjaxrs.controller.EventTypeController;
+import com.example.eventsjaxrs.controller.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -17,6 +15,8 @@ public class JerseyConfig extends ResourceConfig {
         register(EventController.class);
         register(AttendeeController.class);
         register(EventTypeController.class);
+        register(EmployeeController.class);
+        register(EmployeeTypeController.class);
     }
 
 }

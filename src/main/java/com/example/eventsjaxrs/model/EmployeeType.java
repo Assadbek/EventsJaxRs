@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-@XmlRootElement(name = "eventType")
+@XmlRootElement(name = "employeeType")
 
 @Entity
-@Table(name = "eventType")
-public class EventType {
+@Table(name = "employeeType")
+public class EmployeeType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,5 +25,7 @@ public class EventType {
     private String name;
 
     private String description;
+
+    private String fee;
 
 }

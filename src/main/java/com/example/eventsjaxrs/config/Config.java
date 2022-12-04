@@ -1,10 +1,9 @@
 package com.example.eventsjaxrs.config;
 
 
-import com.example.eventsjaxrs.model.Attendee;
-import com.example.eventsjaxrs.model.Event;
-import com.example.eventsjaxrs.model.EventType;
+import com.example.eventsjaxrs.model.*;
 import com.example.eventsjaxrs.service.AttendeeService;
+import com.example.eventsjaxrs.service.EmployeeService;
 import com.example.eventsjaxrs.service.EventService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,7 @@ import java.util.List;
 public class Config {
 
     @Bean
-    CommandLineRunner commandLineRunner(EventService eventService, AttendeeService attendeeService) {
+    CommandLineRunner commandLineRunner(EventService eventService, AttendeeService attendeeService, EmployeeService employeeService) {
         return args -> {
 
             Calendar calendar = Calendar.getInstance();
@@ -39,6 +38,26 @@ public class Config {
                     .description("Birthday party, Birthday party")
                     .build();
 
+            var employeeType = EmployeeType.builder()
+                    .name("Manager")
+                    .description("Manager of party")
+                    .fee("250000")
+                    .build();
+
+            calendar.add(Calendar.DATE, 2);
+            var employeeStartDate = calendar.getTime();
+
+            calendar.add(Calendar.DATE, 1);
+            var employeeEndDate = calendar.getTime();
+
+            var employee = Employee.builder()
+                    .name("Tom")
+                    .phoneNumber("139749128374")
+                    .startDate(employeeStartDate)
+                    .endDate(employeeEndDate)
+                    .employeeType(employeeType)
+                    .build();
+
             calendar.add(Calendar.DATE, 2);
             var startDate = calendar.getTime();
 
@@ -54,6 +73,9 @@ public class Config {
                     .eventType(eventType)
                     .attendees(List.of(attendee, attendee2))
                     .build();
+
+            employeeService.createEmployeeType(employeeType);
+            employeeService.createEmployee(employee);
 
             attendeeService.createAttendee(attendee);
             attendeeService.createAttendee(attendee2);

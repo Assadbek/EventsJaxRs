@@ -7,16 +7,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 
-@XmlRootElement(name = "eventType")
+@XmlRootElement(name = "employee")
 
 @Entity
-@Table(name = "eventType")
-public class EventType {
+@Table(name = "employee")
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +26,13 @@ public class EventType {
 
     private String name;
 
-    private String description;
+    private String phoneNumber;
+
+    private Date startDate;
+
+    private Date endDate;
+
+    @ManyToOne
+    private EmployeeType employeeType;
 
 }

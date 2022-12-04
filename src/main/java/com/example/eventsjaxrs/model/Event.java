@@ -41,4 +41,7 @@ public class Event {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Attendee> attendees;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Employee> employees;
+
 }
